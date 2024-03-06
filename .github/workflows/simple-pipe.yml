@@ -65,7 +65,7 @@ jobs:
         name: greetings-jar
     - shell: bash
       run: |
-        java -jar gree†ings-actions.jar ${{ github.event.inputs.myValues }}
+        java -jar greetings-actions.jar ${{ github.event.inputs.myValues }}
         
   dependency-submission:
 
