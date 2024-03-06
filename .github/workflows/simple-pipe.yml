@@ -127,3 +127,15 @@ jobs:
   #   # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
   #   - name: Generate and submit dependency graph
   #     uses: gradle/actions/dependency-submission@v3 # v3.1.0
+
+  create-issue-on-failure:
+
+    permissions:
+      issues: write
+    needs: [test-run, count-args]
+    if: always() && failure()
+    uses: ./.github/workflows/create-failure-issue.yml
+    with:
+      title: "Automated workflow failure issue for commit ${{ github.sha }}"
+      body: "This issue was automatically created by the GitHub Action workflow ** ${{ github.workflow }} **"
+      
